@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="g1" cx="0" cy="0" r="1" gradientTransform="translate(930 120) rotate(136) scale(560 420)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#77d5df" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#77d5df" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g2" cx="0" cy="0" r="1" gradientTransform="translate(240 20) rotate(66) scale(450 500)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ef7d38" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#ef7d38" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M64 0H0V64" fill="none" stroke="#fff" stroke-opacity=".055"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="#0d1114"/>
+  <rect width="1200" height="630" fill="url(#g1)"/>
+  <rect width="1200" height="630" fill="url(#g2)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <g transform="translate(82 78)">
+    <rect width="62" height="62" rx="18" fill="#151c20" stroke="#fff" stroke-opacity=".16"/>
+    <path d="M10 36h11l6-21 9 36 7-27 5 12h7" fill="none" stroke="#ef7d38" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="80" y="43" fill="#f4f5f3" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="30" font-weight="600">MasArray</text>
+  </g>
+  <text x="82" y="262" fill="#f4f5f3" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="76" font-weight="450" letter-spacing="-4">Software yang lahir dari</text>
+  <text x="82" y="344" fill="#ef7d38" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="76" font-weight="450" letter-spacing="-4">pekerjaan nyata.</text>
+  <text x="86" y="418" fill="#9aa5aa" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="25">Audio · DSP · Power Systems · Substation Automation</text>
+  <g transform="translate(84 500)">
+    <rect width="192" height="42" rx="8" fill="#ef7d38"/>
+    <text x="96" y="27" text-anchor="middle" fill="#17110d" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15" font-weight="600">masarray.github.io</text>
+  </g>
+  <g transform="translate(870 470)" opacity=".9">
+    <path d="M0 38h42l24-90 38 148 28-108 20 50h55" fill="none" stroke="#77d5df" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>
