@@ -1,0 +1,62 @@
+name: Quality Gate
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate static portal
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+
+      - name: Validate repository and site
+        run: python tools/validate-site.py
+
+      - name: Validate JavaScript syntax
+        run: node --check app.js
+
+      - name: Smoke-test the static server
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m http.server 4173 --bind 127.0.0.1 > /tmp/masarray-site.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+
+          for attempt in {1..20}; do
+            if curl --silent --fail http://127.0.0.1:4173/ > /dev/null; then
+              break
+            fi
+            sleep 0.25
+          done
+
+          curl --fail --show-error --silent http://127.0.0.1:4173/ > /dev/null
+          curl --fail --show-error --silent http://127.0.0.1:4173/styles.css > /dev/null
+          curl --fail --show-error --silent http://127.0.0.1:4173/app.js > /dev/null
+          curl --fail --show-error --silent http://127.0.0.1:4173/site.webmanifest > /dev/null
+          curl --fail --show-error --silent http://127.0.0.1:4173/404.html > /dev/null

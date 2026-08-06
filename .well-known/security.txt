@@ -1,0 +1,5 @@
+Contact: https://github.com/masarray/masarray.github.io/security/advisories/new
+Policy: https://github.com/masarray/masarray.github.io/security/policy
+Canonical: https://masarray.github.io/.well-known/security.txt
+Preferred-Languages: id, en
+Expires: 2027-08-07T00:00:00.000Z

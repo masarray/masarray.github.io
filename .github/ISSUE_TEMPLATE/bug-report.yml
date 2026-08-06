@@ -1,0 +1,76 @@
+name: Portal bug report
+description: Report a reproducible problem in the MasArray main website.
+title: "[Portal bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for the main portal only. Product-specific bugs belong in the product repository. Remove confidential data from screenshots and logs.
+  - type: input
+    id: url
+    attributes:
+      label: Affected URL
+      placeholder: https://masarray.github.io/
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Product directory or metadata
+        - Search, filter, or sorting
+        - Navigation or links
+        - Responsive layout
+        - Dark or light theme
+        - Accessibility or keyboard use
+        - SEO, sharing, or manifest
+        - Other portal behavior
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      description: Give the smallest reliable sequence that reproduces the problem.
+      placeholder: |
+        1. Open ...
+        2. Select ...
+        3. Observe ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual result
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Browser, operating system, and device
+      placeholder: Chrome 151, Windows 11, desktop
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Screenshots or additional evidence
+      description: Drag files here only after removing private or confidential information.
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Confirmation
+      options:
+        - label: I searched existing issues and this concerns the main portal rather than a specific product.
+          required: true
+        - label: I removed credentials, activation data, personal information, and confidential project material.
+          required: true

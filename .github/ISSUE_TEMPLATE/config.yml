@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Browse MasArray software
+    url: https://masarray.github.io/
+    about: Open the official public software portal.
+  - name: Product-specific support
+    url: https://github.com/masarray?tab=repositories
+    about: Select the relevant product repository for application support.
+  - name: Private security report
+    url: https://github.com/masarray/masarray.github.io/security/advisories/new
+    about: Report an undisclosed portal vulnerability privately.
