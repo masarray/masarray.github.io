@@ -1,0 +1,44 @@
+name: Portal improvement
+description: Propose a focused improvement to product discovery or the main website.
+title: "[Portal improvement]: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Describe the user problem first. Product feature requests belong in the relevant product repository.
+  - type: textarea
+    id: problem
+    attributes:
+      label: User problem
+      description: Who is affected, and what is difficult today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed improvement
+      description: Explain the smallest change that would solve the problem.
+    validations:
+      required: true
+  - type: textarea
+    id: value
+    attributes:
+      label: Public value
+      description: How would this improve discovery, trust, accessibility, performance, or maintenance?
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: checkboxes
+    id: constraints
+    attributes:
+      label: Constraints
+      options:
+        - label: This request is for the main portal, not a feature inside one product.
+          required: true
+        - label: The proposal preserves honest product claims and public-data boundaries.
+          required: true

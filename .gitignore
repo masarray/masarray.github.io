@@ -1,0 +1,31 @@
+# Operating systems
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editors and IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Node and test output
+node_modules/
+coverage/
+dist/
+build/
+
+# Local tooling
+*.log
+.env
+.env.*
+!.env.example
+.tmp/
+.cache/
