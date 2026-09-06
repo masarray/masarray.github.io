@@ -81,3 +81,5 @@
       document.documentElement.dataset.releaseSync = 'fallback';
     });
 })();
+
+// pages-sync-trigger: 2026-09-06
