@@ -1,0 +1,65 @@
+name: Sync OBS VST3 Public Site
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/sync-obs-vst3.yml
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-obs-vst3-public-site
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout website
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Sync public OBS VST3 pages from product repo
+        shell: bash
+        run: |
+          set -euo pipefail
+          base='https://raw.githubusercontent.com/masarray/obs-vst3/main/docs'
+          mkdir -p obs-vst3
+          files=(
+            index.html
+            install.html
+            compatibility.html
+            safety.html
+            roadmap.html
+            site.css
+            release-sync.js
+          )
+
+          for file in "${files[@]}"; do
+            echo "Syncing ${file}"
+            curl --fail --silent --show-error --location \
+              "${base}/${file}" \
+              --output "obs-vst3/${file}"
+          done
+
+      - name: Commit synchronized site
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- obs-vst3; then
+            echo 'OBS VST3 public site is already synchronized.'
+            exit 0
+          fi
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add obs-vst3
+          git commit -m 'site: sync OBS VST3 landing pages from product repo'
+          git push origin HEAD:main
