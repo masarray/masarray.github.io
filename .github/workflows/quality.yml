@@ -56,6 +56,7 @@ jobs:
           done
 
           curl --fail --show-error --silent http://127.0.0.1:4173/ > /dev/null
+          curl --fail --show-error --silent http://127.0.0.1:4173/arstack61850/ | grep -Fq 'ARStack Process Bus Simulator'
           curl --fail --show-error --silent http://127.0.0.1:4173/styles.css > /dev/null
           curl --fail --show-error --silent http://127.0.0.1:4173/app.js > /dev/null
           curl --fail --show-error --silent http://127.0.0.1:4173/site.webmanifest > /dev/null
