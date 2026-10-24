@@ -11,7 +11,7 @@
 [![GitHub Pages](https://img.shields.io/badge/hosting-GitHub%20Pages-222?style=flat-square&logo=github)](https://masarray.github.io/)
 [![Zero framework](https://img.shields.io/badge/runtime-static%20HTML%20%2B%20CSS%20%2B%20JS-6f7bf7?style=flat-square)](#architecture)
 
-[Open the portal](https://masarray.github.io/) · [Browse MasArray repositories](https://github.com/masarray?tab=repositories) · [Report a portal issue](https://github.com/masarray/masarray.github.io/issues/new/choose)
+[ARStack Process Bus Simulator M3.H](https://masarray.github.io/arstack61850/) · [M3.H Windows Setup](https://github.com/masarray/arstack61850/releases/download/processbus-sim-m3h-20261024/ARStack-ProcessBus-M3H-win-x64-setup.exe) · [Open the portal](https://masarray.github.io/) · [Browse MasArray repositories](https://github.com/masarray?tab=repositories) · [Report a portal issue](https://github.com/masarray/masarray.github.io/issues/new/choose)
 
 </div>
 
@@ -23,6 +23,12 @@
 - **Audio and creator software:** DSP, VST, karaoke, browser audio, OBS, live streaming, desktop, mobile, and web utilities.
 
 The portal is intentionally lightweight. It runs as a static site, loads without a framework, and progressively enriches the software directory from GitHub's public repository API.
+
+## Latest engineering release — ARStack Process Bus Simulator M3.H
+
+The portal prominently features [ARStack Process Bus Simulator](https://masarray.github.io/arstack61850/), the public **24 October 2026 Experimental Lab Edition** for engineers experimenting with IEC 61850 process bus: ESP32-P4 hardware-assisted 4I+4V Sampled Values at 4000 fps plus a simulated internal PTP Global GM. Recorded **163,048 SV frames in 40.76 s**, all `smpSynch=2`, with no missing, duplicate or malformed frames. Relay compatibility has not been tested and external GPS is not required for the simulation.
+
+Direct [Setup EXE](https://github.com/masarray/arstack61850/releases/download/processbus-sim-m3h-20261024/ARStack-ProcessBus-M3H-win-x64-setup.exe), [Portable ZIP](https://github.com/masarray/arstack61850/releases/download/processbus-sim-m3h-20261024/ARStack-ProcessBus-M3H-win-x64-portable.zip) and [firmware BIN](https://github.com/masarray/arstack61850/releases/download/processbus-sim-m3h-20261024/ARStack-ESP32P4-ProcessBus-M3H-firmware.bin) are version-pinned to the public [GitHub Release](https://github.com/masarray/arstack61850/releases/tag/processbus-sim-m3h-20261024).
 
 ## Product experience
 
