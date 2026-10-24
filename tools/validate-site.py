@@ -158,6 +158,48 @@ def validate_html(errors: list[str], warnings: list[str]) -> None:
         warnings.append("No noscript fallback was found.")
 
 
+def validate_processbus_landing(errors: list[str]) -> None:
+    """Keep the public M3.H landing aligned with the immutable GitHub assets."""
+    path = ROOT / "arstack61850" / "index.html"
+    if not path.is_file():
+        add_error(errors, "Missing ARStack Process Bus Simulator product landing.")
+        return
+    content = path.read_text(encoding="utf-8")
+    parser = SiteParser()
+    parser.feed(content)
+    if parser.title_count != 1 or parser.html_lang.lower() != "en":
+        add_error(errors, "ARStack M3.H landing must have one title and lang=en.")
+    if len(parser.ids) != len(set(parser.ids)):
+        add_error(errors, "Duplicate IDs in ARStack M3.H landing.")
+    canonical = next((link.get("href", "") for link in parser.links
+                      if "canonical" in link.get("rel", "").lower().split()), "")
+    if canonical != "https://masarray.github.io/arstack61850/":
+        add_error(errors, "ARStack product landing canonical mismatch.")
+    required = (
+        "processbus-sim-m3h-20261024",
+        "ARStack-ProcessBus-M3H-win-x64-setup.exe",
+        "ARStack-ProcessBus-M3H-win-x64-portable.zip",
+        "ARStack-ESP32P4-ProcessBus-M3H-firmware.bin",
+        "a922e9bdba4e57a4",
+        "163,048",
+        "smpSynch=2",
+        "not yet tested",
+        "https://github.com/masarray/arstack61850",
+    )
+    for marker in required:
+        if marker not in content:
+            add_error(errors, f"ARStack M3.H landing missing public release marker: {marker}")
+    for kind, url, line in parser.references:
+        if kind == "unsafe-blank":
+            add_error(errors, f"Unsafe target=_blank in ARStack landing at line {line}.")
+    sitemap = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
+    if canonical not in sitemap:
+        add_error(errors, "ARStack landing is missing from sitemap.")
+    directory_js = (ROOT / "app.js").read_text(encoding="utf-8")
+    if "'arstack61850': {" not in directory_js or "releaseUrl:" not in directory_js:
+        add_error(errors, "ARStack M3.H not promoted in the portal software directory.")
+
+
 def validate_manifest(errors: list[str]) -> None:
     path = ROOT / "site.webmanifest"
     try:
@@ -227,6 +269,7 @@ def main() -> int:
     if INDEX.is_file():
         validate_html(errors, warnings)
     validate_manifest(errors)
+    validate_processbus_landing(errors)
     validate_robots_and_sitemap(errors)
     validate_repository_hygiene(errors, warnings)
 
