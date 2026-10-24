@@ -6,6 +6,15 @@
   const EXCLUDED_REPOS = new Set(['masarray.github.io', 'masarray', '.github']);
 
   const OVERRIDES = {
+    'arstack61850': {
+      name: 'ARStack Process Bus Simulator M3.H',
+      category: 'engineering',
+      featured: true,
+      priority: 145,
+      description: 'Rilis publik M3.H: ESP32-P4 4I+4V SV 4000 fps + simulasi PTP Global GM, hardware timestamp, Capture Studio. PCAP: 163.048 SV, smpSynch=2 100%, tanpa missing/duplicate dalam 40,76 detik.',
+      homepage: 'https://masarray.github.io/arstack61850/',
+      releaseUrl: 'https://github.com/masarray/arstack61850/releases/tag/processbus-sim-m3h-20261024'
+    },
     'sc220-download': {
       name: 'SC220 Live',
       category: 'audio',
@@ -66,6 +75,20 @@
   };
 
   const FALLBACK_REPOS = [
+    {
+      id: 0,
+      name: 'arstack61850',
+      full_name: 'masarray/arstack61850',
+      html_url: 'https://github.com/masarray/arstack61850',
+      homepage: 'https://masarray.github.io/arstack61850/',
+      description: OVERRIDES.arstack61850.description,
+      language: 'C++',
+      topics: ['iec61850', 'sampled-values', 'ptp', 'esp32p4', 'hardware-timestamp'],
+      fork: false,
+      archived: false,
+      size: 1,
+      updated_at: '2026-10-24T05:48:33Z'
+    },
     {
       id: 1,
       name: 'sc220-download',
@@ -300,7 +323,7 @@
         site.remove();
       }
 
-      release.href = `${repo.html_url}/releases`;
+      release.href = safeHttpUrl(OVERRIDES[repo.name]?.releaseUrl) || `${repo.html_url}/releases`;
       release.setAttribute('aria-label', `Lihat rilis ${repo.displayName}`);
       code.href = repo.html_url;
       code.setAttribute('aria-label', `Buka source code ${repo.displayName}`);
