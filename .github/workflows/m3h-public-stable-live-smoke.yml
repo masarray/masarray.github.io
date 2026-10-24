@@ -1,0 +1,87 @@
+name: M3.H Public Stable Live HTTP and Download Acceptance
+
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/m3h-public-stable-live-smoke.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  live-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Fetch live deployed HTML and confirm Public Stable copy
+        shell: bash
+        run: |
+          set -euo pipefail
+          for n in 1 2 3 4 5 6; do
+            curl --fail --location --silent --show-error --retry 3 \
+              "https://masarray.github.io/arstack61850/?stable-check=$GITHUB_RUN_ID" -o product.html || true
+            curl --fail --location --silent --show-error --retry 3 \
+              "https://masarray.github.io/?stable-check=$GITHUB_RUN_ID" -o portal.html || true
+            if grep -Fq 'Public Stable' product.html 2>/dev/null && \
+               grep -Fq 'Public Stable' portal.html 2>/dev/null; then break; fi
+            echo "Pages deployment/cache not ready; HTTP check attempt $n/6"
+            sleep 15
+          done
+          python3 - <<'PY'
+          from pathlib import Path
+          product = Path('product.html').read_text()
+          portal = Path('portal.html').read_text()
+          assert 'Public Stable' in product, 'LIVE PRODUCT NOT STABLE'
+          assert 'Public Stable' in portal, 'LIVE PORTAL NOT STABLE'
+          assert '<title>ARStack Process Bus Simulator M3.H' in product
+          assert 'property="og:title"' in product
+          assert 'name="viewport"' in product
+          assert 'simulated Global PTP Grandmaster' in product
+          assert 'a922e9bdba4e57a4' in product
+          assert 'processbus-sim-m3h-20261024' in portal
+          base = 'https://github.com/masarray/arstack61850/releases/download/processbus-sim-m3h-20261024/'
+          for name in ('ARStack-ProcessBus-M3H-win-x64-setup.exe',
+                       'ARStack-ProcessBus-M3H-win-x64-portable.zip',
+                       'ARStack-ESP32P4-ProcessBus-M3H-firmware.bin',
+                       'firmware-manifest.json','SHA256SUMS.txt'):
+              assert base+name in product, f'MISSING live CTA {name}'
+          print('PASS: live product and portal HTTP body contains Public Stable, build ID, all 5 asset links')
+          PY
+
+      - name: Download all five public assets over HTTP and verify exact SHA-256
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+          base="https://github.com/masarray/arstack61850/releases/download/processbus-sim-m3h-20261024"
+          for item in \
+            ARStack-ProcessBus-M3H-win-x64-setup.exe \
+            ARStack-ProcessBus-M3H-win-x64-portable.zip \
+            ARStack-ESP32P4-ProcessBus-M3H-firmware.bin \
+            firmware-manifest.json SHA256SUMS.txt; do
+            echo "HTTP download: $item"
+            curl --fail --location --retry 5 --retry-all-errors --retry-delay 3 \
+              --silent --show-error "$base/$item" --output "dist/$item"
+          done
+          cd dist
+          sha256sum --check SHA256SUMS.txt
+          echo '4902e8bf44e78fc55a139ce84a1273f0768ef6fe10000f5d0f85d75d2f6c736e  ARStack-ProcessBus-M3H-win-x64-setup.exe' | sha256sum -c -
+          echo 'ca01424e4102aa65e353737024ebf3258b4d2f614fa60d932c95c353ee228d8f  ARStack-ProcessBus-M3H-win-x64-portable.zip' | sha256sum -c -
+          echo '61c508e9bf1357eb964d2b817b260b6a0e985446ddd68de1d45d9467e25c4607  ARStack-ESP32P4-ProcessBus-M3H-firmware.bin' | sha256sum -c -
+          echo 'b2878148a1cda30f11a4c93a200bcba07bb63548aa571de8d05260c2ef630f9a  firmware-manifest.json' | sha256sum -c -
+          echo 'c7674d1a97b77b66adda12216f7d5e460f86da5cb07fd1d1f02bf3011b99c876  SHA256SUMS.txt' | sha256sum -c -
+          python3 - <<'PY'
+          from pathlib import Path
+          import json,zipfile,hashlib
+          m=json.loads(Path('firmware-manifest.json').read_text())
+          assert m['sourceCommit']=='a922e9bdba4e57a4e88406eb83344455dd8ff142'
+          assert m['buildId']=='a922e9bdba4e57a4'
+          assert m['sha256']==hashlib.sha256(Path('ARStack-ESP32P4-ProcessBus-M3H-firmware.bin').read_bytes()).hexdigest()
+          with zipfile.ZipFile('ARStack-ProcessBus-M3H-win-x64-portable.zip') as z:
+              assert z.testzip() is None
+              pm=json.loads(z.read('firmware/firmware-manifest.json'))
+              assert pm['sourceCommit']==m['sourceCommit']
+              assert z.read('firmware/arstack-esp32p4-smv-0.1.1.bin')==Path('ARStack-ESP32P4-ProcessBus-M3H-firmware.bin').read_bytes()
+          print('PASS: five real HTTP downloads, ZIP payload, manifest, Build ID, immutable source SHA')
+          PY
