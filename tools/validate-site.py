@@ -183,7 +183,7 @@ def validate_processbus_landing(errors: list[str]) -> None:
         "a922e9bdba4e57a4",
         "163,048",
         "smpSynch=2",
-        "not yet tested",
+        "remain untested",
         "https://github.com/masarray/arstack61850",
     )
     for marker in required:
