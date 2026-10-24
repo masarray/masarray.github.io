@@ -9,6 +9,7 @@
 
   <title>MasArray Software — Audio, DSP & Engineering Tools</title>
   <meta name="description" content="Portal resmi software MasArray: aplikasi audio dan DSP, engineering tools, substation automation, utilitas Windows dan Android, dokumentasi, serta unduhan rilis terbaru.">
+  <meta name="keywords" content="IEC 61850, Process Bus Simulator, ARStack, ESP32-P4, Sampled Values, PTP, hardware timestamp, engineering tools, MasArray">
   <link rel="canonical" href="https://masarray.github.io/">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="site.webmanifest">
@@ -45,6 +46,16 @@
         "name":"MasArray",
         "url":"https://masarray.github.io/",
         "sameAs":["https://github.com/masarray"]
+      },
+      {
+        "@type":"SoftwareApplication",
+        "name":"ARStack Process Bus Simulator M3.H",
+        "applicationCategory":"DeveloperApplication",
+        "operatingSystem":"Windows 10, Windows 11; ESP32-P4 firmware",
+        "url":"https://masarray.github.io/arstack61850/",
+        "downloadUrl":"https://github.com/masarray/arstack61850/releases/tag/processbus-sim-m3h-20261024",
+        "softwareVersion":"M3.H Lab Edition",
+        "description":"IEC 61850 process bus simulator: ESP32-P4 SV 4I+4V 4000 fps plus simulated Global PTP GM with hardware timestamp evidence for isolated engineer experiments."
       },
       {
         "@type":"SoftwareApplication",
@@ -176,6 +187,36 @@
       </div>
     </section>
 
+    <section class="processbus-section" aria-labelledby="processbus-title">
+      <div class="shell">
+        <article class="processbus-spotlight">
+          <div class="processbus-copy">
+            <p class="eyebrow"><span></span> NEW PUBLIC RELEASE · ENGINEERING · OCT 2026</p>
+            <h2 id="processbus-title">ARStack <em>Process Bus Simulator</em></h2>
+            <p>Jalankan ESP32-P4 sebagai <strong>emulator Merging Unit 4I+4V</strong> dan <strong>PTP Grandmaster simulasi</strong> untuk eksperimen IEC 61850. Studio Windows mengatur waveform, Start/Stop, hardware timestamp, dan capture Ethernet.</p>
+            <div class="processbus-metrics" aria-label="Hasil capture M3.H">
+              <span><strong>163.048</strong> SV frames</span>
+              <span><strong>4.000</strong> fps</span>
+              <span><strong>100%</strong> smpSynch=2</span>
+              <span><strong>0</strong> missing/duplicate</span>
+            </div>
+            <div class="processbus-links">
+              <a class="button button-primary compact" href="https://masarray.github.io/arstack61850/">Buka halaman produk</a>
+              <a class="button button-secondary compact" href="https://github.com/masarray/arstack61850/releases/download/processbus-sim-m3h-20261024/ARStack-ProcessBus-M3H-win-x64-setup.exe">Download Windows Setup</a>
+              <a class="processbus-release-link" href="https://github.com/masarray/arstack61850/releases/tag/processbus-sim-m3h-20261024" target="_blank" rel="noopener">Release notes ↗</a>
+            </div>
+            <p class="processbus-limit">Public Lab Edition · PTP Global GM disimulasikan tanpa GPS; penerimaan oleh relay sungguhan belum diuji.</p>
+          </div>
+          <div class="processbus-diagram" role="img" aria-label="Skema ESP32-P4 mengirim PTP Layer 2 dan 4I+4V Sampled Values ke jaringan laboratorium">
+            <div class="processbus-device">ESP32-P4 <small>Hardware TX timestamp</small></div>
+            <div class="processbus-bus" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+            <div class="processbus-streams"><div>PTP <strong>Announce · Sync · Follow_Up</strong></div><div>SV <strong>4I + 4V · 4 kHz · smpSynch 2</strong></div></div>
+            <div class="processbus-lab">Isolated Lab Network <small>Wireshark · ARSAS · DigSubAnalyzer</small></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <section class="catalog-section" id="produk" aria-labelledby="catalog-title">
       <div class="shell">
         <div class="section-heading catalog-heading">
@@ -290,7 +331,7 @@
         <span>MasArray</span>
       </a>
       <p>Audio software · Engineering tools · Substation automation</p>
-      <div><a href="https://github.com/masarray" target="_blank" rel="noopener">GitHub</a><a href="https://masarray.github.io/sc220-download/">SC220 Live</a></div>
+      <div><a href="https://github.com/masarray" target="_blank" rel="noopener">GitHub</a><a href="https://masarray.github.io/arstack61850/">ARStack Process Bus</a><a href="https://masarray.github.io/sc220-download/">SC220 Live</a></div>
       <small>© <span data-year></span> MasArray. Dibangun di Indonesia.</small>
     </div>
   </footer>
