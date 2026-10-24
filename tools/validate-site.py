@@ -159,7 +159,7 @@ def validate_html(errors: list[str], warnings: list[str]) -> None:
 
 
 def validate_processbus_landing(errors: list[str]) -> None:
-    """Keep the public M3.H landing aligned with the immutable GitHub assets."""
+    """Check evergreen links and preserve the explicitly named historical lab evidence."""
     path = ROOT / "arstack61850" / "index.html"
     if not path.is_file():
         add_error(errors, "Missing ARStack Process Bus Simulator product landing.")
@@ -176,11 +176,13 @@ def validate_processbus_landing(errors: list[str]) -> None:
     if canonical != "https://masarray.github.io/arstack61850/":
         add_error(errors, "ARStack product landing canonical mismatch.")
     required = (
-        "processbus-sim-m3h-20261024",
-        "ARStack-ProcessBus-M3H-win-x64-setup.exe",
-        "ARStack-ProcessBus-M3H-win-x64-portable.zip",
-        "ARStack-ESP32P4-ProcessBus-M3H-firmware.bin",
-        "a922e9bdba4e57a4",
+        "https://github.com/masarray/arstack61850/releases/latest",
+        'data-asset="windows"',
+        'data-asset="portable"',
+        'data-asset="firmware"',
+        'data-asset="linux"',
+        "syncLatestRelease",
+        "M3.H",
         "163,048",
         "smpSynch=2",
         "remain untested",
@@ -188,7 +190,10 @@ def validate_processbus_landing(errors: list[str]) -> None:
     )
     for marker in required:
         if marker not in content:
-            add_error(errors, f"ARStack M3.H landing missing public release marker: {marker}")
+            add_error(errors, f"ARStack landing missing release/onboarding marker: {marker}")
+    blocked = ("omi" + "cron", "dan" + "eo", "sipro" + "tec", "ied" + "scout")
+    if any(term in content.casefold() for term in blocked):
+        add_error(errors, "ARStack product page contains restricted commercial names.")
     for kind, url, line in parser.references:
         if kind == "unsafe-blank":
             add_error(errors, f"Unsafe target=_blank in ARStack landing at line {line}.")
@@ -197,7 +202,7 @@ def validate_processbus_landing(errors: list[str]) -> None:
         add_error(errors, "ARStack landing is missing from sitemap.")
     directory_js = (ROOT / "app.js").read_text(encoding="utf-8")
     if "'arstack61850': {" not in directory_js or "releaseUrl:" not in directory_js:
-        add_error(errors, "ARStack M3.H not promoted in the portal software directory.")
+        add_error(errors, "ARStack not promoted in the portal software directory.")
 
 
 def validate_manifest(errors: list[str]) -> None:
