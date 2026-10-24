@@ -14,19 +14,34 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
+      - name: Diagnose deployed routes and HTTP response
+        shell: bash
+        run: |
+          set -euo pipefail
+          for url in \
+            https://masarray.github.io/ \
+            https://masarray.github.io/index.html \
+            https://masarray.github.io/arstack61850/ \
+            https://masarray.github.io/arstack61850/index.html \
+            https://masarray.github.io/obs-vst3/; do
+            echo "URL $url"
+            curl -sSL -o /tmp/site-route-response -w 'status=%{http_code} remote=%{remote_ip} redirect=%{url_effective} length=%{size_download}\\n' "$url" || true
+            head -c 130 /tmp/site-route-response | tr '\\n' ' ' || true
+            echo
+          done
       - name: Fetch live deployed HTML and confirm Public Stable copy
         shell: bash
         run: |
           set -euo pipefail
-          for n in 1 2 3 4 5 6; do
+          for n in 1 2; do
             curl --fail --location --silent --show-error --retry 3 \
               "https://masarray.github.io/arstack61850/?stable-check=$GITHUB_RUN_ID" -o product.html || true
             curl --fail --location --silent --show-error --retry 3 \
               "https://masarray.github.io/?stable-check=$GITHUB_RUN_ID" -o portal.html || true
             if grep -Fq 'Public Stable' product.html 2>/dev/null && \
                grep -Fq 'Public Stable' portal.html 2>/dev/null; then break; fi
-            echo "Pages deployment/cache not ready; HTTP check attempt $n/6"
-            sleep 15
+            echo "Pages deployment/cache not ready; HTTP check attempt $n/2"
+            sleep 3
           done
           python3 - <<'PY'
           from pathlib import Path
@@ -50,6 +65,7 @@ jobs:
           PY
 
       - name: Download all five public assets over HTTP and verify exact SHA-256
+        if: always()
         shell: bash
         run: |
           set -euo pipefail
