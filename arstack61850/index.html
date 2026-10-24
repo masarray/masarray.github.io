@@ -84,10 +84,10 @@
       typeof x.browser_download_url==='string' &&
       x.browser_download_url.startsWith('https://github.com/masarray/arstack61850/releases/download/'));
     const resolved={
-      windows:find(/(?:win|windows).*setup\\.exe$/i),
-      portable:find(/(?:win|windows).*portable\\.zip$/i),
-      firmware:find(/firmware.*\\.bin$/i),
-      linux:find(/linux.*\\.AppImage$/i)
+      windows:find(/(?:win|windows).*setup\.exe$/i),
+      portable:find(/(?:win|windows).*portable\.zip$/i),
+      firmware:find(/firmware.*\.bin$/i),
+      linux:find(/linux.*\.AppImage$/i)
     };
     for(const [key,asset] of Object.entries(resolved)){
       document.querySelectorAll('[data-asset="'+key+'"]').forEach(link=>{
