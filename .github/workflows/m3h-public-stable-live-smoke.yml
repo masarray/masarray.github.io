@@ -1,4 +1,5 @@
 name: M3.H Public Stable Live HTTP and Download Acceptance
+# Run after the owning masarray/arstack61850 project Pages deployment was fixed.
 
 on:
   push:
@@ -33,15 +34,15 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          for n in 1 2; do
+          for n in 1 2 3 4 5; do
             curl --fail --location --silent --show-error --retry 3 \
               "https://masarray.github.io/arstack61850/?stable-check=$GITHUB_RUN_ID" -o product.html || true
             curl --fail --location --silent --show-error --retry 3 \
               "https://masarray.github.io/?stable-check=$GITHUB_RUN_ID" -o portal.html || true
             if grep -Fq 'Public Stable' product.html 2>/dev/null && \
                grep -Fq 'Public Stable' portal.html 2>/dev/null; then break; fi
-            echo "Pages deployment/cache not ready; HTTP check attempt $n/2"
-            sleep 3
+            echo "Pages deployment/cache not ready; HTTP check attempt $n/5"
+            sleep 5
           done
           python3 - <<'PY'
           from pathlib import Path
