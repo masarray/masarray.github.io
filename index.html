@@ -49,13 +49,13 @@
       },
       {
         "@type":"SoftwareApplication",
-        "name":"ARStack Process Bus Simulator M3.H",
+        "name":"ARStack Process Bus Simulator M3.H.3",
         "applicationCategory":"DeveloperApplication",
-        "operatingSystem":"Windows 10, Windows 11; ESP32-P4 firmware",
+        "operatingSystem":"Windows 10, Windows 11; Linux x86_64; ESP32-P4 firmware",
         "url":"https://masarray.github.io/arstack61850/",
         "downloadUrl":"https://github.com/masarray/arstack61850/releases/latest",
-        "softwareVersion":"M3.H Stable Lab Simulator Edition",
-        "description":"IEC 61850 process bus simulator: ESP32-P4 SV 4I+4V 4000 fps plus simulated Global PTP GM with hardware timestamp evidence for isolated engineer experiments."
+        "softwareVersion":"M3.H.3 Official Stable Lab Release",
+        "description":"IEC 61850 process bus simulator: ESP32-P4 autonomous 4I+4V SV at 4000 fps, internal PTP SOURCE simulation and Studio reconnect state adoption. Independent capture: 4,705,090 SV frames without missing, duplicate or malformed frames."
       },
       {
         "@type":"SoftwareApplication",
@@ -193,19 +193,19 @@
           <div class="processbus-copy">
             <p class="eyebrow"><span></span> OPEN SOURCE · IEC 61850 ENGINEERING</p>
             <h2 id="processbus-title">ARStack <em>Process Bus Simulator</em></h2>
-            <p>Jalankan ESP32-P4 sebagai <strong>emulator Merging Unit 4I+4V</strong> dan <strong>PTP Grandmaster simulasi</strong> untuk eksperimen IEC 61850. Studio Windows mengatur waveform, Start/Stop, hardware timestamp, dan capture Ethernet.</p>
-            <div class="processbus-metrics" aria-label="Hasil capture M3.H">
-              <span><strong>163.048</strong> SV frames</span>
+            <p>Jalankan ESP32-P4 sebagai <strong>emulator Merging Unit 4I+4V</strong> dan <strong>PTP Grandmaster simulasi</strong> untuk eksperimen IEC 61850. Studio mengatur waveform, Start/Stop, dan capture Ethernet. Setelah Studio ditutup, ESP32-P4 yang tetap menyala dapat terus mengirim SV; saat Studio dibuka lagi, status perangkat diadopsi otomatis.</p>
+            <div class="processbus-metrics" aria-label="Hasil capture independen M3.H.3">
+              <span><strong>4.705.090</strong> SV frames</span>
               <span><strong>4.000</strong> fps</span>
-              <span><strong>100%</strong> smpSynch=2</span>
-              <span><strong>0</strong> missing/duplicate</span>
+              <span><strong>19m 36s</strong> capture</span>
+              <span><strong>0</strong> missing/duplicate/reorder</span>
             </div>
             <div class="processbus-links">
               <a class="button button-primary compact" href="https://masarray.github.io/arstack61850/">Buka halaman produk</a>
-              <a class="button button-secondary compact" href="https://github.com/masarray/arstack61850/releases/latest">Download terbaru ↗</a>
-              <a class="processbus-release-link" href="https://github.com/masarray/arstack61850/releases/latest" target="_blank" rel="noopener">Latest release ↗</a>
+              <a class="button button-secondary compact" href="https://github.com/masarray/arstack61850/releases/tag/processbus-sim-m3h3-20261025">Download M3.H.3 Official ↗</a>
+              <a class="processbus-release-link" href="https://github.com/masarray/arstack61850/releases/tag/processbus-sim-m3h3-20261025" target="_blank" rel="noopener">Official stable M3.H.3 ↗</a>
             </div>
-            <p class="processbus-limit">ARStack61850 · Eksperimen SV 4I+4V dan simulasi PTP di jaringan laboratorium.</p>
+            <p class="processbus-limit">M3.H.3 Official Stable · 3.528 frame PTP teramati; external GM lock tidak diklaim (telemetri UNLOCKED). Gunakan jaringan lab terisolasi.</p>
           </div>
           <div class="processbus-diagram" role="img" aria-label="Skema ESP32-P4 mengirim PTP Layer 2 dan 4I+4V Sampled Values ke jaringan laboratorium">
             <div class="processbus-device">ESP32-P4 <small>Hardware TX timestamp</small></div>
