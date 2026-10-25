@@ -11,7 +11,7 @@
 [![GitHub Pages](https://img.shields.io/badge/hosting-GitHub%20Pages-222?style=flat-square&logo=github)](https://masarray.github.io/)
 [![Zero framework](https://img.shields.io/badge/runtime-static%20HTML%20%2B%20CSS%20%2B%20JS-6f7bf7?style=flat-square)](#architecture)
 
-[ARStack Process Bus Simulator M3.H](https://masarray.github.io/arstack61850/) · [M3.H Windows Setup](https://github.com/masarray/arstack61850/releases/download/processbus-sim-m3h-20261024/ARStack-ProcessBus-M3H-win-x64-setup.exe) · [Open the portal](https://masarray.github.io/) · [Browse MasArray repositories](https://github.com/masarray?tab=repositories) · [Report a portal issue](https://github.com/masarray/masarray.github.io/issues/new/choose)
+[ARStack Process Bus Simulator M3.H.3 Official Stable](https://masarray.github.io/arstack61850/) · [M3.H.3 Windows Setup](https://github.com/masarray/arstack61850/releases/download/processbus-sim-m3h3-20261025/ARStack-Studio-M3H3-win-x64-setup.exe) · [Open the portal](https://masarray.github.io/) · [Browse MasArray repositories](https://github.com/masarray?tab=repositories) · [Report a portal issue](https://github.com/masarray/masarray.github.io/issues/new/choose)
 
 </div>
 
@@ -24,11 +24,11 @@
 
 The portal is intentionally lightweight. It runs as a static site, loads without a framework, and progressively enriches the software directory from GitHub's public repository API.
 
-## Latest engineering release — ARStack Process Bus Simulator M3.H
+## Latest engineering release — ARStack Process Bus Simulator M3.H.3 Official Stable
 
-The portal prominently features [ARStack Process Bus Simulator](https://masarray.github.io/arstack61850/), the public **24 October 2026 Experimental Lab Edition** for engineers experimenting with IEC 61850 process bus: ESP32-P4 hardware-assisted 4I+4V Sampled Values at 4000 fps plus a simulated internal PTP Global GM. Recorded **163,048 SV frames in 40.76 s**, all `smpSynch=2`, with no missing, duplicate or malformed frames. Relay compatibility has not been tested and external GPS is not required for the simulation.
+The portal features the **25 October 2026 M3.H.3 Official Stable Lab Release**: autonomous ESP32-P4 4I+4V SV (4000 fps nominal), simulated internal PTP SOURCE, and Studio live-board state adoption after reopen. Independent Ethernet capture: **4,705,090 SV frames in 19 min 36 s**, zero missing/duplicate/reorder/malformed SV, 3,528 PTP frames, `smpSynch=2` throughout. **External PTP GM lock was not verified** (internal-source `UNLOCKED` telemetry); this remains an isolated engineering lab tool.
 
-Direct [Setup EXE](https://github.com/masarray/arstack61850/releases/download/processbus-sim-m3h-20261024/ARStack-ProcessBus-M3H-win-x64-setup.exe), [Portable ZIP](https://github.com/masarray/arstack61850/releases/download/processbus-sim-m3h-20261024/ARStack-ProcessBus-M3H-win-x64-portable.zip) and [firmware BIN](https://github.com/masarray/arstack61850/releases/download/processbus-sim-m3h-20261024/ARStack-ESP32P4-ProcessBus-M3H-firmware.bin) are version-pinned to the public [GitHub Release](https://github.com/masarray/arstack61850/releases/tag/processbus-sim-m3h-20261024).
+Direct [Setup EXE](https://github.com/masarray/arstack61850/releases/download/processbus-sim-m3h3-20261025/ARStack-Studio-M3H3-win-x64-setup.exe), [Portable ZIP](https://github.com/masarray/arstack61850/releases/download/processbus-sim-m3h3-20261025/ARStack-Studio-M3H3-win-x64-portable.zip), [ESP32-P4 firmware](https://github.com/masarray/arstack61850/releases/download/processbus-sim-m3h3-20261025/ARStack-ESP32P4-M3H3-firmware.bin), and Linux AppImage are included in the official [M3.H.3 GitHub stable release](https://github.com/masarray/arstack61850/releases/tag/processbus-sim-m3h3-20261025).
 
 ## Product experience
 
