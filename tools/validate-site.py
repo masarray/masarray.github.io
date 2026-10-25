@@ -159,7 +159,7 @@ def validate_html(errors: list[str], warnings: list[str]) -> None:
 
 
 def validate_processbus_landing(errors: list[str]) -> None:
-    """Check evergreen links and preserve the explicitly named historical lab evidence."""
+    """Check current official stable download links, SV evidence and honest PTP scope."""
     path = ROOT / "arstack61850" / "index.html"
     if not path.is_file():
         add_error(errors, "Missing ARStack Process Bus Simulator product landing.")
@@ -168,9 +168,9 @@ def validate_processbus_landing(errors: list[str]) -> None:
     parser = SiteParser()
     parser.feed(content)
     if parser.title_count != 1 or parser.html_lang.lower() != "en":
-        add_error(errors, "ARStack M3.H landing must have one title and lang=en.")
+        add_error(errors, "ARStack landing must have one title and lang=en.")
     if len(parser.ids) != len(set(parser.ids)):
-        add_error(errors, "Duplicate IDs in ARStack M3.H landing.")
+        add_error(errors, "Duplicate IDs in ARStack landing.")
     canonical = next((link.get("href", "") for link in parser.links
                       if "canonical" in link.get("rel", "").lower().split()), "")
     if canonical != "https://masarray.github.io/arstack61850/":
@@ -182,10 +182,12 @@ def validate_processbus_landing(errors: list[str]) -> None:
         'data-asset="firmware"',
         'data-asset="linux"',
         "syncLatestRelease",
-        "M3.H",
-        "163,048",
+        "M3.H.3",
+        "4,705,090",
         "smpSynch=2",
-        "remain untested",
+        "19m 36s",
+        "UNLOCKED",
+        "processbus-sim-m3h3-20261025",
         "https://github.com/masarray/arstack61850",
     )
     for marker in required:
