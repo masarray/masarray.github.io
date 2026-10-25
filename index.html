@@ -55,7 +55,7 @@
         "url":"https://masarray.github.io/arstack61850/",
         "downloadUrl":"https://github.com/masarray/arstack61850/releases/latest",
         "softwareVersion":"M3.H.3 Official Stable Lab Release",
-        "description":"IEC 61850 process bus simulator: ESP32-P4 autonomous 4I+4V SV at 4000 fps, internal PTP SOURCE simulation and Studio reconnect state adoption. Independent capture: 4,705,090 SV frames without missing, duplicate or malformed frames."
+        "description":"Free IEC 61850 process-bus traffic injection for engineers: generate 4I+4V SV and PTP SOURCE on one ESP32-P4 for isolated relay/BCU lab scenarios. Autonomous studio reconnect. Next: multiple SV streams and SCL-based virtual merging units."
       },
       {
         "@type":"SoftwareApplication",
@@ -193,7 +193,7 @@
           <div class="processbus-copy">
             <p class="eyebrow"><span></span> OPEN SOURCE · IEC 61850 ENGINEERING</p>
             <h2 id="processbus-title">ARStack <em>Process Bus Simulator</em></h2>
-            <p>Jalankan ESP32-P4 sebagai <strong>emulator Merging Unit 4I+4V</strong> dan <strong>PTP Grandmaster simulasi</strong> untuk eksperimen IEC 61850. Studio mengatur waveform, Start/Stop, dan capture Ethernet. Setelah Studio ditutup, ESP32-P4 yang tetap menyala dapat terus mengirim SV; saat Studio dibuka lagi, status perangkat diadopsi otomatis.</p>
+            <p><strong>Simulasikan Process Bus IEC 61850 dengan traffic Ethernet nyata.</strong> Satu ESP32-P4 dapat mengirim 4I+4V Sampled Values dan PTP SOURCE untuk eksperimen subscriber relay, BCU atau analyzer di jaringan lab. Atur waveform lewat Studio, tutup aplikasi saat ESP tetap mengirim, lalu buka lagi dan lanjutkan dari kondisi perangkat.</p>
             <div class="processbus-metrics" aria-label="Hasil capture independen M3.H.3">
               <span><strong>4.705.090</strong> SV frames</span>
               <span><strong>4.000</strong> fps</span>
@@ -205,7 +205,7 @@
               <a class="button button-secondary compact" href="https://github.com/masarray/arstack61850/releases/tag/processbus-sim-m3h3-20261025">Download M3.H.3 Official ↗</a>
               <a class="processbus-release-link" href="https://github.com/masarray/arstack61850/releases/tag/processbus-sim-m3h3-20261025" target="_blank" rel="noopener">Official stable M3.H.3 ↗</a>
             </div>
-            <p class="processbus-limit">M3.H.3 Official Stable · 3.528 frame PTP teramati; external GM lock tidak diklaim (telemetri UNLOCKED). Gunakan jaringan lab terisolasi.</p>
+            <p class="processbus-limit">M3.H.3 Official Stable · SMV/PTP untuk simulasi engineering di jaringan lab terisolasi. <strong>Roadmap berikutnya: Multi-SV dan virtual Merging Unit berbasis SCL</strong> dalam satu ESP32-P4. <a href="https://github.com/masarray/arstack61850/blob/main/docs/PROCESS_BUS_MULTI_SV_SCL_NEXT_PHASE.md">Lihat roadmap</a>.</p>
           </div>
           <div class="processbus-diagram" role="img" aria-label="Skema ESP32-P4 mengirim PTP Layer 2 dan 4I+4V Sampled Values ke jaringan laboratorium">
             <div class="processbus-device">ESP32-P4 <small>Hardware TX timestamp</small></div>
