@@ -7,13 +7,13 @@
 
   const OVERRIDES = {
     'arstack61850': {
-      name: 'ARStack Process Bus Simulator M3.H',
+      name: 'ARStack Process Bus Simulator M3.H.3',
       category: 'engineering',
       featured: true,
       priority: 145,
-      description: 'Rilis publik M3.H: ESP32-P4 4I+4V SV 4000 fps + simulasi PTP Global GM, hardware timestamp, Capture Studio. PCAP: 163.048 SV, smpSynch=2 100%, tanpa missing/duplicate dalam 40,76 detik.',
+      description: 'Official Stable M3.H.3: ESP32-P4 autonomous 4I+4V SV 4000 fps, Studio reconnect state adoption, simulasi PTP SOURCE. Capture independen 19 menit 36 detik: 4.705.090 SV tanpa missing, duplicate, reorder atau malformed. External PTP GM lock belum dibuktikan.',
       homepage: 'https://masarray.github.io/arstack61850/',
-      releaseUrl: 'https://github.com/masarray/arstack61850/releases/tag/processbus-sim-m3h-20261024'
+      releaseUrl: 'https://github.com/masarray/arstack61850/releases/tag/processbus-sim-m3h3-20261025'
     },
     'sc220-download': {
       name: 'SC220 Live',
