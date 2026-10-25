@@ -186,7 +186,8 @@ def validate_processbus_landing(errors: list[str]) -> None:
         "4,705,090",
         "smpSynch=2",
         "19m 36s",
-        "UNLOCKED",
+        "Multiple SV publishers",
+        "SCL file-based configuration",
         "processbus-sim-m3h3-20261025",
         "https://github.com/masarray/arstack61850",
     )
