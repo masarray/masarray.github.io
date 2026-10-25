@@ -11,7 +11,7 @@
       category: 'engineering',
       featured: true,
       priority: 145,
-      description: 'Official Stable M3.H.3: ESP32-P4 autonomous 4I+4V SV 4000 fps, Studio reconnect state adoption, simulasi PTP SOURCE. Capture independen 19 menit 36 detik: 4.705.090 SV tanpa missing, duplicate, reorder atau malformed. External PTP GM lock belum dibuktikan.',
+      description: 'Official Stable M3.H.3: alat injeksi traffic IEC 61850 Process Bus gratis untuk eksperimen relay/BCU. ESP32-P4 mengirim SV 4I+4V 4000 fps + PTP SOURCE dan tetap berjalan tanpa Studio. Capture 4.705.090 frame SV tanpa missing/duplicate/reorder. Berikutnya: Multi-SV dan virtual Merging Unit berbasis SCL.',
       homepage: 'https://masarray.github.io/arstack61850/',
       releaseUrl: 'https://github.com/masarray/arstack61850/releases/tag/processbus-sim-m3h3-20261025'
     },
